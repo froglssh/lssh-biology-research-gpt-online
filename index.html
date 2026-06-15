@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>麗山高中生物專題研究簡報｜生物科林獻升老師製作</title>
+<style>
+:root {
+  --ink: #18201c;
+  --muted: #66736c;
+  --paper: #fbfcf8;
+  --panel: #ffffff;
+  --line: #dfe7dd;
+  --forest: #155c43;
+  --leaf: #3f9f71;
+  --gold: #c6a44d;
+  --brick: #b95f45;
+  --sky: #e8f2f6;
+  --shadow: 0 18px 50px rgba(25, 43, 33, .14);
+  --slide-width: 1032px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  background:
+    linear-gradient(180deg, rgba(232,242,246,.92), rgba(251,252,248,.98) 330px),
+    var(--paper);
+}
+a { color: inherit; }
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  border-bottom: 1px solid rgba(21, 92, 67, .14);
+  background: rgba(251, 252, 248, .9);
+  backdrop-filter: blur(18px);
+}
+.topbar-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 10px clamp(18px, 4vw, 42px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "brand actions";
+  column-gap: 18px;
+  row-gap: 0;
+  align-items: center;
+}
+.brand {
+  grid-area: brand;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.brand img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #fff;
+  border: 1px solid rgba(21, 92, 67, .18);
+  box-shadow: 0 8px 18px rgba(21, 92, 67, .16);
+}
+.title-block { min-width: 0; }
+.kicker {
+  margin: 0 0 2px;
+  color: var(--forest);
+  font-size: 11px;
+  font-weight: 800;
+}
+h1 {
+  margin: 0;
+  font-size: clamp(22px, 2.7vw, 30px);
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+.maker-row {
+  margin: 5px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.maker {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 650;
+}
+.bio-link {
+  padding: 4px 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid rgba(21, 92, 67, .16);
+  border-radius: 6px;
+  background: #fff;
+  text-decoration: none;
+  box-shadow: none;
+}
+.bio-link strong {
+  display: inline;
+  flex: 0 0 auto;
+  color: var(--forest);
+  font-size: 12px;
+}
+.bio-link span {
+  display: inline;
+  margin-top: 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.45;
+}
+.actions {
+  grid-area: actions;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+button, .outline-link {
+  font: inherit;
+  border-radius: 8px;
+}
+.primary-btn, .outline-link {
+  min-height: 34px;
+  padding: 0 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 800;
+}
+.primary-btn {
+  color: #fff;
+  background: linear-gradient(135deg, var(--forest), #287a58);
+  box-shadow: 0 14px 26px rgba(21, 92, 67, .22);
+}
+.outline-link {
+  color: var(--forest);
+  background: #fff;
+  border-color: rgba(21, 92, 67, .18);
+}
+.zoom-controls {
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px;
+  border: 1px solid rgba(21, 92, 67, .18);
+  border-radius: 8px;
+  background: #fff;
+}
+.zoom-btn {
+  width: 30px;
+  height: 28px;
+  border: 1px solid transparent;
+  background: var(--sky);
+  color: var(--forest);
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 900;
+}
+.zoom-btn:hover {
+  border-color: rgba(21, 92, 67, .2);
+  background: #dcecef;
+}
+.zoom-label {
+  min-width: 42px;
+  text-align: center;
+  color: var(--forest);
+  font-size: 12px;
+  font-weight: 900;
+}
+.zoom-reset {
+  min-width: 38px;
+  height: 28px;
+  padding: 0 8px;
+  border: 1px solid rgba(21, 92, 67, .12);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 800;
+}
+.zoom-reset:hover {
+  color: var(--forest);
+  background: #f4f8f2;
+}
+.layout {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 28px clamp(18px, 4vw, 42px) 70px;
+  display: grid;
+  grid-template-columns: 138px minmax(0, 1fr);
+  gap: 26px;
+  align-items: start;
+}
+.thumb-rail {
+  position: sticky;
+  top: 100px;
+  display: grid;
+  gap: 10px;
+  max-height: calc(100vh - 120px);
+  overflow: auto;
+  padding-right: 4px;
+}
+.thumb {
+  display: grid;
+  grid-template-columns: 76px 1fr;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+  padding: 6px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  text-align: left;
+}
+.thumb img {
+  width: 76px;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid rgba(21, 92, 67, .15);
+}
+.thumb span {
+  font-weight: 900;
+  font-size: 13px;
+}
+.thumb.active {
+  background: #fff;
+  border-color: rgba(21, 92, 67, .22);
+  color: var(--forest);
+  box-shadow: 0 8px 18px rgba(25, 43, 33, .08);
+}
+.slides {
+  display: grid;
+  gap: 28px;
+  justify-items: center;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+.slide-card {
+  justify-self: center;
+  width: var(--slide-width);
+  max-width: none;
+  margin-inline: auto;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  transition: width .18s ease;
+}
+.slide-meta {
+  min-height: 46px;
+  padding: 8px 10px 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid var(--line);
+  color: var(--forest);
+  font-weight: 900;
+}
+.icon-btn {
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(21, 92, 67, .16);
+  background: var(--sky);
+  color: var(--forest);
+  cursor: pointer;
+}
+.slide-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #f4f6f2;
+}
+.progress {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  background: rgba(21, 92, 67, .12);
+  z-index: 40;
+}
+.progress span {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--leaf), var(--gold), var(--brick));
+}
+.viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: none;
+  grid-template-rows: 1fr auto;
+  background: #070907;
+}
+.viewer.open { display: grid; }
+.viewer-stage {
+  min-height: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+.viewer-stage img {
+  max-width: 100%;
+  max-height: calc(100vh - 88px);
+  object-fit: contain;
+  box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 30px 90px rgba(0,0,0,.52);
+}
+.viewer-controls {
+  min-height: 68px;
+  padding: 10px max(16px, env(safe-area-inset-left)) calc(10px + env(safe-area-inset-bottom));
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 12px;
+  align-items: center;
+  background: rgba(0,0,0,.72);
+  color: #fff;
+}
+.viewer-controls button {
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid rgba(255,255,255,.2);
+  background: rgba(255,255,255,.11);
+  color: #fff;
+  cursor: pointer;
+  font-weight: 850;
+}
+.viewer-controls button:hover { background: rgba(255,255,255,.2); }
+.viewer-controls .next { justify-self: end; }
+.counter {
+  min-width: 96px;
+  text-align: center;
+  color: rgba(255,255,255,.76);
+  font-weight: 800;
+}
+.close-viewer {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 110;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255,255,255,.24);
+  border-radius: 50%;
+  background: rgba(0,0,0,.45);
+  color: #fff;
+  cursor: pointer;
+  font-size: 22px;
+}
+@media (max-width: 900px) {
+  .topbar-inner {
+    grid-template-columns: 1fr;
+  }
+  .topbar-inner {
+    grid-template-areas:
+      "brand"
+      "actions";
+  }
+  .actions {
+    justify-content: flex-start;
+  }
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .thumb-rail {
+    position: static;
+    grid-auto-flow: column;
+    grid-auto-columns: 96px;
+    overflow-x: auto;
+    max-height: none;
+    padding: 0 0 8px;
+  }
+  .thumb {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+  .thumb img {
+    width: 84px;
+  }
+  .slide-card {
+    width: min(100%, var(--slide-width));
+  }
+}
+@media (max-width: 560px) {
+  .topbar-inner {
+    padding: 12px 14px;
+  }
+  .brand img {
+    width: 40px;
+    height: 40px;
+  }
+  .maker {
+    font-size: 14px;
+  }
+  .viewer-controls {
+    grid-template-columns: 1fr 72px 1fr;
+  }
+  .viewer-controls button {
+    padding: 0 10px;
+  }
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <img src="assets/lssh-logo.jpg" alt="麗山高中校徽">
+      <div class="title-block">
+        <p class="kicker">臺北市立麗山高中</p>
+        <h1>麗山高中生物專題研究簡報</h1>
+        <div class="maker-row">
+          <p class="maker">生物科林獻升老師製作</p>
+          <a class="bio-link" href="https://sites.google.com/lssh.tp.edu.tw/biology/%E9%A6%96%E9%A0%81" target="_blank" rel="noreferrer">
+            <strong>麗山生物科網頁</strong>
+            <span>點選查看更詳細資訊</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="actions">
+      <div class="zoom-controls" aria-label="檢視大小控制">
+        <button class="zoom-btn" type="button" id="zoomOut" aria-label="縮小檢視" title="縮小檢視">−</button>
+        <span class="zoom-label" id="zoomLabel">100%</span>
+        <button class="zoom-btn" type="button" id="zoomIn" aria-label="放大檢視" title="放大檢視">＋</button>
+        <button class="zoom-reset" type="button" id="zoomReset" aria-label="重設檢視大小" title="重設檢視大小">重設</button>
+      </div>
+      <button class="primary-btn" type="button" id="playAll">▶ 全螢幕播放簡報</button>
+      <a class="outline-link" href="#slide-1">回到第 1 頁</a>
+    </div>
+  </div>
+</header>
+
+<main class="layout">
+  <nav class="thumb-rail" aria-label="頁面縮圖">
+    <button class="thumb" type="button" data-target="1" aria-label="跳到第 1 頁">
+  <img src="assets/slides/slide-01.jpg" alt="">
+  <span>01</span>
+</button><button class="thumb" type="button" data-target="2" aria-label="跳到第 2 頁">
+  <img src="assets/slides/slide-02.jpg" alt="">
+  <span>02</span>
+</button><button class="thumb" type="button" data-target="3" aria-label="跳到第 3 頁">
+  <img src="assets/slides/slide-03.jpg" alt="">
+  <span>03</span>
+</button><button class="thumb" type="button" data-target="4" aria-label="跳到第 4 頁">
+  <img src="assets/slides/slide-04.jpg" alt="">
+  <span>04</span>
+</button><button class="thumb" type="button" data-target="5" aria-label="跳到第 5 頁">
+  <img src="assets/slides/slide-05.jpg" alt="">
+  <span>05</span>
+</button><button class="thumb" type="button" data-target="6" aria-label="跳到第 6 頁">
+  <img src="assets/slides/slide-06.jpg" alt="">
+  <span>06</span>
+</button><button class="thumb" type="button" data-target="7" aria-label="跳到第 7 頁">
+  <img src="assets/slides/slide-07.jpg" alt="">
+  <span>07</span>
+</button><button class="thumb" type="button" data-target="8" aria-label="跳到第 8 頁">
+  <img src="assets/slides/slide-08.jpg" alt="">
+  <span>08</span>
+</button><button class="thumb" type="button" data-target="9" aria-label="跳到第 9 頁">
+  <img src="assets/slides/slide-09.jpg" alt="">
+  <span>09</span>
+</button><button class="thumb" type="button" data-target="10" aria-label="跳到第 10 頁">
+  <img src="assets/slides/slide-10.jpg" alt="">
+  <span>10</span>
+</button><button class="thumb" type="button" data-target="11" aria-label="跳到第 11 頁">
+  <img src="assets/slides/slide-11.jpg" alt="">
+  <span>11</span>
+</button><button class="thumb" type="button" data-target="12" aria-label="跳到第 12 頁">
+  <img src="assets/slides/slide-12.jpg" alt="">
+  <span>12</span>
+</button><button class="thumb" type="button" data-target="13" aria-label="跳到第 13 頁">
+  <img src="assets/slides/slide-13.jpg" alt="">
+  <span>13</span>
+</button><button class="thumb" type="button" data-target="14" aria-label="跳到第 14 頁">
+  <img src="assets/slides/slide-14.jpg" alt="">
+  <span>14</span>
+</button><button class="thumb" type="button" data-target="15" aria-label="跳到第 15 頁">
+  <img src="assets/slides/slide-15.jpg" alt="">
+  <span>15</span>
+</button><button class="thumb" type="button" data-target="16" aria-label="跳到第 16 頁">
+  <img src="assets/slides/slide-16.jpg" alt="">
+  <span>16</span>
+</button><button class="thumb" type="button" data-target="17" aria-label="跳到第 17 頁">
+  <img src="assets/slides/slide-17.jpg" alt="">
+  <span>17</span>
+</button><button class="thumb" type="button" data-target="18" aria-label="跳到第 18 頁">
+  <img src="assets/slides/slide-18.jpg" alt="">
+  <span>18</span>
+</button><button class="thumb" type="button" data-target="19" aria-label="跳到第 19 頁">
+  <img src="assets/slides/slide-19.jpg" alt="">
+  <span>19</span>
+</button><button class="thumb" type="button" data-target="20" aria-label="跳到第 20 頁">
+  <img src="assets/slides/slide-20.jpg" alt="">
+  <span>20</span>
+</button><button class="thumb" type="button" data-target="21" aria-label="跳到第 21 頁">
+  <img src="assets/slides/slide-21.jpg" alt="">
+  <span>21</span>
+</button><button class="thumb" type="button" data-target="22" aria-label="跳到第 22 頁">
+  <img src="assets/slides/slide-22.jpg" alt="">
+  <span>22</span>
+</button><button class="thumb" type="button" data-target="23" aria-label="跳到第 23 頁">
+  <img src="assets/slides/slide-23.jpg" alt="">
+  <span>23</span>
+</button><button class="thumb" type="button" data-target="24" aria-label="跳到第 24 頁">
+  <img src="assets/slides/slide-24.jpg" alt="">
+  <span>24</span>
+</button><button class="thumb" type="button" data-target="25" aria-label="跳到第 25 頁">
+  <img src="assets/slides/slide-25.jpg" alt="">
+  <span>25</span>
+</button><button class="thumb" type="button" data-target="26" aria-label="跳到第 26 頁">
+  <img src="assets/slides/slide-26.jpg" alt="">
+  <span>26</span>
+</button><button class="thumb" type="button" data-target="27" aria-label="跳到第 27 頁">
+  <img src="assets/slides/slide-27.jpg" alt="">
+  <span>27</span>
+</button><button class="thumb" type="button" data-target="28" aria-label="跳到第 28 頁">
+  <img src="assets/slides/slide-28.jpg" alt="">
+  <span>28</span>
+</button><button class="thumb" type="button" data-target="29" aria-label="跳到第 29 頁">
+  <img src="assets/slides/slide-29.jpg" alt="">
+  <span>29</span>
+</button><button class="thumb" type="button" data-target="30" aria-label="跳到第 30 頁">
+  <img src="assets/slides/slide-30.jpg" alt="">
+  <span>30</span>
+</button>
+  </nav>
+  <section class="slides" aria-label="簡報頁面">
+    <article class="slide-card" id="slide-1" data-slide="1">
+  <div class="slide-meta">
+    <span>第 1 頁</span>
+    <button class="icon-btn open-slide" type="button" data-index="1" aria-label="播放第 1 頁" title="播放第 1 頁">▶</button>
+  </div>
+  <img src="assets/slides/slide-01.jpg" alt="麗山高中生物專題研究簡報第 1 頁完整投影片" loading="lazy">
+</article><article class="slide-card" id="slide-2" data-slide="2">
+  <div class="slide-meta">
+    <span>第 2 頁</span>
+    <button class="icon-btn open-slide" type="button" data-index="2" aria-label="播放第 2 頁" title="播放第 2 頁">▶</button>
+  </div>
+  <img src="assets/slides/slide-02.jpg" alt="麗山高中生物專題研究簡報第 2 頁完整投影片" loading="lazy">
+</article><article class="slide-card" id="slide-3" data-slide="3">
+  <div class="slide-meta">
+    <span>第 3 頁</span>
+    <button class="icon-btn open-slide" type="button" data-index="3" aria-label="播放第 3 頁" title="播放第 3 頁">▶</button>
+  </div>
+  <img src="assets/slides/slide-03.jpg" alt="麗山高中生物專題研究簡報第 3 頁完整投影片" loading="lazy">
+</article><article class="slide-card" id="slide-4" data-slide="4">
+  <div class="slide-meta">
+    <span>第 4 頁</span>
+    <button class="icon-btn open-slide" type="button" data-index="4" aria-label="播放第 4 頁" title="播放第 4 頁">▶</button>
+  </div>
+  <img src="assets/slides/slide-04.jpg" alt="麗山高中生物專題研究簡報第 4 頁完整投影片" loading="lazy">
+</article><article class="slide-card" id="slide-5" data-slide="5">
+  <div class="slide-meta">
+    <span>第 5 頁</span>
+    <button class="icon-btn open-slide" type="button" data-index="5" aria-label="播放第 5 頁" title="播放第 5 頁">▶</button>
+  </div>
+  <img src="assets/slides/slide-05.jpg" alt="麗山高中生物專題研究簡報第 5 頁完整投影片" loading="lazy">
+</article><article class="slide-card" id="slide-6" data-slide="6">
+  <div class="slide-meta">
+    <span>第 6 頁</span>
+    <button class="icon-btn open-slide" type="button" data-index="6" aria-label="播放第 6 頁" title="播放第 6 頁">▶</button>
+  </div>
+  <img src="assets/slides/slide-06.jpg" alt="麗山高中生物專題研究簡報第 6 頁完整投影片" loading="lazy">
+</article><article class="slide-card" id="slide-7" data-slide="7">
+  <div class="slide-meta">
+    <span>第 7 頁</span>
+    <button class="icon-btn open-slide" type="button" data-index="7" aria-label="播放第 7 頁" title="播放第 7 頁">▶</button>
+  </div>
+  <img src="assets/slides/slide-07.jpg" alt="麗山高中生物專題研究簡報第 7 頁完整投影片" loading="lazy">
+</article><article class="slide-card" id="slide-8" data-slide="8">
+  <div class="slide-meta">
+    <span>第 8 頁</span>
+    <button class="icon-btn open-slide" type="button" data-index="8" aria-label="播放第 8 頁" title="播放第 8 頁">▶</button>
+  </div>
+  <img src="assets/slides/slide-08.jpg" alt="麗山高中生物專題研究簡報第 8 頁完整投影片" loading="lazy">
+</article><article class="slide-card" id="slide-9" data-slide="9">
+  <div class="slide-meta">
+    <span>第 9 頁</span>
+    <button class="icon-btn open-slide" type="button" data-index="9" aria-label="播放第 9 頁" title="播放第 9 頁">▶</button>
+  </div>
+  <img src="assets/slides/slide-09.jpg" alt="麗山高中生物專題研究簡報第 9 頁完整投影片" loading="lazy">
+</article><article class="slide-card" id="slide-10" data-slide="10">
+  <div class="slide-meta">
+    <span>第 10 頁</span>
+    <button class="icon-btn open-slide" type="button" data-index="10" aria-label="播放第 10 頁" title="播放第 10 頁">▶</button>
+  </div>
+  <img src="assets/slides/slide-10.jpg" alt="麗山高中生物專題研究簡報第 10 頁完整投影片" loading="lazy">
+</article><article class="slide-card" id="slide-11" data-slide="11">
+  <div class="slide-meta">
+    <span>第 11 頁</span>
+    <button class="icon-btn open-slide" type="button" data-index="11" aria-label="播放第 11 頁" title="播放第 11 頁">▶</button>
+  </div>
+  <img src="assets/slides/slide-11.jpg" alt="麗山高中生物專題研究簡報第 11 頁完整投影片" loading="lazy">
+</article><article class="slide-card" id="slide-12" data-slide="12">
+  <div class="slide-meta">
+    <span>第 12 頁</span>
+    <button class="icon-btn open-slide" type="button" data-index="12" aria-label="播放第 12 頁" title="播放第 12 頁">▶</button>
+  </div>
+  <img src="assets/slides/slide-12.jpg" alt="麗山高中生物專題研究簡報第 12 頁完整投影片" loading="lazy">
+</article><article class="slide-card" id="slide-13" data-slide="13">
+  <div class="slide-meta">
+    <span>第 13 頁</span>
+    <button class="icon-btn open-slide" type="button" data-index="13" aria-label="播放第 13 頁" title="播放第 13 頁">▶</button>
+  </div>
+  <img src="assets/slides/slide-13.jpg" alt="麗山高中生物專題研究簡報第 13 頁完整投影片" loading="lazy">
+</article><article class="slide-card" id="slide-14" data-slide="14">
+  <div class="slide-meta">
+    <span>第 14 頁</span>
+    <button class="icon-btn open-slide" type="button" data-index="14" aria-label="播放第 14 頁" title="播放第 14 頁">▶</button>
+  </div>
+  <img src="assets/slides/slide-14.jpg" alt="麗山高中生物專題研究簡報第 14 頁完整投影片" loading="lazy">
+</article><article class="slide-card" id="slide-15" data-slide="15">
+  <div class="slide-meta">
+    <span>第 15 頁</span>
+    <button class="icon-btn open-slide" type="button" data-index="15" aria-label="播放第 15 頁" title="播放第 15 頁">▶</button>
+  </div>
+  <img src="assets/slides/slide-15.jpg" alt="麗山高中生物專題研究簡報第 15 頁完整投影片" loading="lazy">
+</article><article class="slide-card" id="slide-16" data-slide="16">
+  <div class="slide-meta">
+    <span>第 16 頁</span>
+    <button class="icon-btn open-slide" type="button" data-index="16" aria-label="播放第 16 頁" title="播放第 16 頁">▶</button>
+  </div>
+  <img src="assets/slides/slide-16.jpg" alt="麗山高中生物專題研究簡報第 16 頁完整投影片" loading="lazy">
+</article><article class="slide-card" id="slide-17" data-slide="17">
+  <div class="slide-meta">
+    <span>第 17 頁</span>
+    <button class="icon-btn open-slide" type="button" data-index="17" aria-label="播放第 17 頁" title="播放第 17 頁">▶</button>
+  </div>
+  <img src="assets/slides/slide-17.jpg" alt="麗山高中生物專題研究簡報第 17 頁完整投影片" loading="lazy">
+</article><article class="slide-card" id="slide-18" data-slide="18">
+  <div class="slide-meta">
+    <span>第 18 頁</span>
+    <button class="icon-btn open-slide" type="button" data-index="18" aria-label="播放第 18 頁" title="播放第 18 頁">▶</button>
+  </div>
+  <img src="assets/slides/slide-18.jpg" alt="麗山高中生物專題研究簡報第 18 頁完整投影片" loading="lazy">
+</article><article class="slide-card" id="slide-19" data-slide="19">
+  <div class="slide-meta">
+    <span>第 19 頁</span>
+    <button class="icon-btn open-slide" type="button" data-index="19" aria-label="播放第 19 頁" title="播放第 19 頁">▶</button>
+  </div>
+  <img src="assets/slides/slide-19.jpg" alt="麗山高中生物專題研究簡報第 19 頁完整投影片" loading="lazy">
+</article><article class="slide-card" id="slide-20" data-slide="20">
+  <div class="slide-meta">
+    <span>第 20 頁</span>
+    <button class="icon-btn open-slide" type="button" data-index="20" aria-label="播放第 20 頁" title="播放第 20 頁">▶</button>
+  </div>
+  <img src="assets/slides/slide-20.jpg" alt="麗山高中生物專題研究簡報第 20 頁完整投影片" loading="lazy">
+</article><article class="slide-card" id="slide-21" data-slide="21">
+  <div class="slide-meta">
+    <span>第 21 頁</span>
+    <button class="icon-btn open-slide" type="button" data-index="21" aria-label="播放第 21 頁" title="播放第 21 頁">▶</button>
+  </div>
+  <img src="assets/slides/slide-21.jpg" alt="麗山高中生物專題研究簡報第 21 頁完整投影片" loading="lazy">
+</article><article class="slide-card" id="slide-22" data-slide="22">
+  <div class="slide-meta">
+    <span>第 22 頁</span>
+    <button class="icon-btn open-slide" type="button" data-index="22" aria-label="播放第 22 頁" title="播放第 22 頁">▶</button>
+  </div>
+  <img src="assets/slides/slide-22.jpg" alt="麗山高中生物專題研究簡報第 22 頁完整投影片" loading="lazy">
+</article><article class="slide-card" id="slide-23" data-slide="23">
+  <div class="slide-meta">
+    <span>第 23 頁</span>
+    <button class="icon-btn open-slide" type="button" data-index="23" aria-label="播放第 23 頁" title="播放第 23 頁">▶</button>
+  </div>
+  <img src="assets/slides/slide-23.jpg" alt="麗山高中生物專題研究簡報第 23 頁完整投影片" loading="lazy">
+</article><article class="slide-card" id="slide-24" data-slide="24">
+  <div class="slide-meta">
+    <span>第 24 頁</span>
+    <button class="icon-btn open-slide" type="button" data-index="24" aria-label="播放第 24 頁" title="播放第 24 頁">▶</button>
+  </div>
+  <img src="assets/slides/slide-24.jpg" alt="麗山高中生物專題研究簡報第 24 頁完整投影片" loading="lazy">
+</article><article class="slide-card" id="slide-25" data-slide="25">
+  <div class="slide-meta">
+    <span>第 25 頁</span>
+    <button class="icon-btn open-slide" type="button" data-index="25" aria-label="播放第 25 頁" title="播放第 25 頁">▶</button>
+  </div>
+  <img src="assets/slides/slide-25.jpg" alt="麗山高中生物專題研究簡報第 25 頁完整投影片" loading="lazy">
+</article><article class="slide-card" id="slide-26" data-slide="26">
+  <div class="slide-meta">
+    <span>第 26 頁</span>
+    <button class="icon-btn open-slide" type="button" data-index="26" aria-label="播放第 26 頁" title="播放第 26 頁">▶</button>
+  </div>
+  <img src="assets/slides/slide-26.jpg" alt="麗山高中生物專題研究簡報第 26 頁完整投影片" loading="lazy">
+</article><article class="slide-card" id="slide-27" data-slide="27">
+  <div class="slide-meta">
+    <span>第 27 頁</span>
+    <button class="icon-btn open-slide" type="button" data-index="27" aria-label="播放第 27 頁" title="播放第 27 頁">▶</button>
+  </div>
+  <img src="assets/slides/slide-27.jpg" alt="麗山高中生物專題研究簡報第 27 頁完整投影片" loading="lazy">
+</article><article class="slide-card" id="slide-28" data-slide="28">
+  <div class="slide-meta">
+    <span>第 28 頁</span>
+    <button class="icon-btn open-slide" type="button" data-index="28" aria-label="播放第 28 頁" title="播放第 28 頁">▶</button>
+  </div>
+  <img src="assets/slides/slide-28.jpg" alt="麗山高中生物專題研究簡報第 28 頁完整投影片" loading="lazy">
+</article><article class="slide-card" id="slide-29" data-slide="29">
+  <div class="slide-meta">
+    <span>第 29 頁</span>
+    <button class="icon-btn open-slide" type="button" data-index="29" aria-label="播放第 29 頁" title="播放第 29 頁">▶</button>
+  </div>
+  <img src="assets/slides/slide-29.jpg" alt="麗山高中生物專題研究簡報第 29 頁完整投影片" loading="lazy">
+</article><article class="slide-card" id="slide-30" data-slide="30">
+  <div class="slide-meta">
+    <span>第 30 頁</span>
+    <button class="icon-btn open-slide" type="button" data-index="30" aria-label="播放第 30 頁" title="播放第 30 頁">▶</button>
+  </div>
+  <img src="assets/slides/slide-30.jpg" alt="麗山高中生物專題研究簡報第 30 頁完整投影片" loading="lazy">
+</article>
+  </section>
+</main>
+
+<div class="viewer" id="viewer" aria-modal="true" role="dialog" aria-label="全螢幕簡報播放">
+  <button class="close-viewer" type="button" id="closeViewer" aria-label="關閉">×</button>
+  <div class="viewer-stage">
+    <img id="viewerImage" src="assets/slides/slide-01.jpg" alt="全螢幕簡報頁面">
+  </div>
+  <div class="viewer-controls">
+    <button type="button" id="prevSlide">上一頁</button>
+    <div class="counter" id="viewerCounter">1 / 30</div>
+    <button type="button" id="nextSlide" class="next">下一頁</button>
+  </div>
+</div>
+
+<div class="progress" aria-hidden="true"><span id="progressFill"></span></div>
+
+<script>
+const slides = ['assets/slides/slide-01.jpg', 'assets/slides/slide-02.jpg', 'assets/slides/slide-03.jpg', 'assets/slides/slide-04.jpg', 'assets/slides/slide-05.jpg', 'assets/slides/slide-06.jpg', 'assets/slides/slide-07.jpg', 'assets/slides/slide-08.jpg', 'assets/slides/slide-09.jpg', 'assets/slides/slide-10.jpg', 'assets/slides/slide-11.jpg', 'assets/slides/slide-12.jpg', 'assets/slides/slide-13.jpg', 'assets/slides/slide-14.jpg', 'assets/slides/slide-15.jpg', 'assets/slides/slide-16.jpg', 'assets/slides/slide-17.jpg', 'assets/slides/slide-18.jpg', 'assets/slides/slide-19.jpg', 'assets/slides/slide-20.jpg', 'assets/slides/slide-21.jpg', 'assets/slides/slide-22.jpg', 'assets/slides/slide-23.jpg', 'assets/slides/slide-24.jpg', 'assets/slides/slide-25.jpg', 'assets/slides/slide-26.jpg', 'assets/slides/slide-27.jpg', 'assets/slides/slide-28.jpg', 'assets/slides/slide-29.jpg', 'assets/slides/slide-30.jpg'];
+let current = 0;
+const viewer = document.getElementById('viewer');
+const viewerImage = document.getElementById('viewerImage');
+const viewerCounter = document.getElementById('viewerCounter');
+const thumbs = [...document.querySelectorAll('.thumb')];
+const cards = [...document.querySelectorAll('.slide-card')];
+const progressFill = document.getElementById('progressFill');
+const zoomLabel = document.getElementById('zoomLabel');
+const zoomIn = document.getElementById('zoomIn');
+const zoomOut = document.getElementById('zoomOut');
+const zoomReset = document.getElementById('zoomReset');
+let slideZoom = Number(localStorage.getItem('lsshSlideZoom')) || 1;
+
+function clampIndex(index) {
+  return Math.max(0, Math.min(slides.length - 1, index));
+}
+
+function applySlideZoom(value) {
+  slideZoom = Math.max(0.7, Math.min(1.35, Math.round(value * 20) / 20));
+  document.documentElement.style.setProperty('--slide-width', `${Math.round(1032 * slideZoom)}px`);
+  zoomLabel.textContent = `${Math.round(slideZoom * 100)}%`;
+  zoomOut.disabled = slideZoom <= 0.7;
+  zoomIn.disabled = slideZoom >= 1.35;
+  localStorage.setItem('lsshSlideZoom', String(slideZoom));
+  updateProgress();
+}
+
+function setCurrent(index) {
+  current = clampIndex(index);
+  viewerImage.src = slides[current];
+  viewerImage.alt = `麗山高中生物專題研究簡報第 ${current + 1} 頁`;
+  viewerCounter.textContent = `${current + 1} / ${slides.length}`;
+  thumbs.forEach((thumb, i) => thumb.classList.toggle('active', i === current));
+}
+
+function openViewer(index) {
+  setCurrent(index);
+  viewer.classList.add('open');
+  document.documentElement.requestFullscreen?.().catch(() => {});
+}
+
+function closeViewer() {
+  viewer.classList.remove('open');
+  if (document.fullscreenElement) document.exitFullscreen?.();
+}
+
+document.getElementById('playAll').addEventListener('click', () => openViewer(current));
+document.getElementById('closeViewer').addEventListener('click', closeViewer);
+document.getElementById('prevSlide').addEventListener('click', () => setCurrent(current - 1));
+document.getElementById('nextSlide').addEventListener('click', () => setCurrent(current + 1));
+zoomOut.addEventListener('click', () => applySlideZoom(slideZoom - 0.1));
+zoomIn.addEventListener('click', () => applySlideZoom(slideZoom + 0.1));
+zoomReset.addEventListener('click', () => applySlideZoom(1));
+
+document.querySelectorAll('.open-slide').forEach(button => {
+  button.addEventListener('click', event => {
+    event.stopPropagation();
+    openViewer(Number(button.dataset.index) - 1);
+  });
+});
+
+cards.forEach((card, index) => {
+  card.addEventListener('click', () => openViewer(index));
+});
+
+thumbs.forEach(thumb => {
+  thumb.addEventListener('click', () => {
+    const index = Number(thumb.dataset.target) - 1;
+    document.getElementById(`slide-${index + 1}`).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setCurrent(index);
+  });
+});
+
+document.addEventListener('keydown', event => {
+  if (!viewer.classList.contains('open')) return;
+  if (event.key === 'ArrowRight' || event.key === 'PageDown' || event.key === ' ') setCurrent(current + 1);
+  if (event.key === 'ArrowLeft' || event.key === 'PageUp') setCurrent(current - 1);
+  if (event.key === 'Escape') closeViewer();
+});
+
+const observer = new IntersectionObserver(entries => {
+  const visible = entries
+    .filter(entry => entry.isIntersecting)
+    .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+  if (visible) setCurrent(Number(visible.target.dataset.slide) - 1);
+}, { threshold: [0.35, 0.55, 0.75] });
+cards.forEach(card => observer.observe(card));
+
+function updateProgress() {
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = max > 0 ? (window.scrollY / max) * 100 : 0;
+  progressFill.style.width = `${pct}%`;
+}
+window.addEventListener('scroll', updateProgress, { passive: true });
+window.addEventListener('resize', updateProgress);
+applySlideZoom(slideZoom);
+setCurrent(0);
+updateProgress();
+</script>
+</body>
+</html>
